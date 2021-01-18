@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func iconRequest() {
+func houseHoldIconRequest() {
 	url := "https://secure1.iconcmo.com/api/"
 	fmt.Println("URL:>", url)
 
@@ -20,14 +20,14 @@ func iconRequest() {
 		}, 
 		"Request": { 
 			"Module": "membership", 
-			"Section": "householdindex", 
+			"Section": "households", 
+			"Filters": {
+				"startAt": 0,
+				"limit": 10 
+			},
 			"Sort": {
 				"last_name": "ascending",
 				"first_name": "ascending"
-			}
-			,"Filters": {
-				"startAt": 0,
-				"limit": 10 
 			}
 		} 
 	}`)
@@ -45,6 +45,6 @@ func iconRequest() {
 	fmt.Println("response Status:", resp.Status)
 	//fmt.Println("response Headers:", resp.Header)
 	body, _ := ioutil.ReadAll(resp.Body)
-	fmt.Println("response Body:", string(body))
-	parseHouseHoldIndexJSON(string(body))
+	//fmt.Println("response Body:", string(body))
+	parseHouseholdJSON(string(body))
 }

@@ -1,0 +1,53 @@
+{
+    "statistics": {
+        "records": 6,
+        "startat": 0,
+        "limit": 10
+    },
+    "householdindex": [
+        {
+            "id": "1803",
+            "status": "Active",
+            "first_name": "Sujit & Anita",
+            "last_name": "Isaac"
+        },
+        {
+            "id": "1804",
+            "status": "Active",
+            "first_name": "Sajan & Annie",
+            "last_name": "Jacob"
+        },
+        {
+            "id": "1800",
+            "status": "Active",
+            "first_name": "Anoop",
+            "last_name": "Thomas"
+        },
+        {
+            "id": "1805",
+            "status": "Active",
+            "first_name": "Mammen & Elizabeth",
+            "last_name": "Thomas"
+        },
+        {
+            "id": "1801",
+            "status": "Active",
+            "first_name": "Nell & Annie",
+            "last_name": "Thomas"
+        },
+        {
+            "id": "1802",
+            "status": "Active",
+            "first_name": "Jacob & Mary",
+            "last_name": "Varghis"
+        }
+    ],
+    "permissions": {
+        "create": true,
+        "read": true,
+        "update": true,
+        "delete": true
+    },
+    "session": "309622ri9ks20na5vhkbq94pv9",
+    "role": "api"
+}
