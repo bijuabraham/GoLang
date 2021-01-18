@@ -1,0 +1,34 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Abraham;Biju;;;
+FN:Biju Abraham
+ORG:MTC SFO;
+NICKNAME:Chacha
+BDAY;X-APPLE-OMIT-YEAR=1604;VALUE=date:1604-11-09
+NOTE:Suju Abraham, Rebecca Abraham, Rachel Abraham
+item1.ADR;TYPE=HOME;TYPE=pref:;;33929 Shylock Dr\ntest;Fremont;CA;United States
+item1.X-ABADR:us
+TEL;TYPE=CELL;TYPE=pref;TYPE=VOICE:14082421928
+TEL;TYPE=IPHONE;TYPE=CELL;TYPE=VOICE:4082421928
+TEL;TYPE=HOME;TYPE=VOICE:4088524522
+EMAIL;TYPE=HOME;TYPE=pref;TYPE=INTERNET:biju.abraham@gmail.com
+EMAIL;TYPE=WORK;TYPE=INTERNET:biabraha@visa.com
+PRODID:-//Mar Thoma Church Of San Francisco.//Registry dated 20210101//EN
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Isaac;Sujit;;;
+FN:Sujit Isaac
+ORG:MTC SFO;
+NICKNAME:Uncle
+BDAY;X-APPLE-OMIT-YEAR=1604;VALUE=date:1604-05-13
+NOTE:Anita Sujit, Sushmita Sujit, Sweta Sujit
+item1.ADR;TYPE=HOME;TYPE=pref:;;1010 Doe Court\nApt 12;Foster City;CA;United States
+item1.X-ABADR:us
+TEL;TYPE=CELL;TYPE=pref;TYPE=VOICE:15103251234
+TEL;TYPE=IPHONE;TYPE=CELL;TYPE=VOICE:6504459876
+TEL;TYPE=HOME;TYPE=VOICE:
+EMAIL;TYPE=HOME;TYPE=pref;TYPE=INTERNET:sujitisaac@gmail.com
+EMAIL;TYPE=WORK;TYPE=INTERNET:sujit@yahoo.com
+PRODID:-//Mar Thoma Church Of San Francisco.//Registry dated 20210101//EN
+END:VCARD
