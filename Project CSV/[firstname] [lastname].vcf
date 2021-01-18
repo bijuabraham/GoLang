@@ -1,0 +1,21 @@
+BEGIN:VCARD
+VERSION:3.0
+N:[lastname];[firstname];;;
+FN:[firstname] [lastname]
+ORG:[company];
+NICKNAME:[nickname]
+BDAY;X-APPLE-OMIT-YEAR=1604;VALUE=date:1604-11-09
+NOTE:[notes]
+item1.ADR;TYPE=HOME;TYPE=pref:;;[address1]\n[address2];[city];[state];[zipc
+ ode];United States
+item1.X-ABADR:us
+TEL;TYPE=CELL;TYPE=pref;TYPE=VOICE:[mobilephone12345678910]
+TEL;TYPE=IPHONE;TYPE=CELL;TYPE=VOICE:[iphone12345678910]
+TEL;TYPE=HOME;TYPE=VOICE:[home12345678910]
+item2.URL;TYPE=pref:http://%5Bwebsite%5D
+item2.X-ABLABEL:_$!<HomePage>!$_
+EMAIL;TYPE=HOME;TYPE=pref;TYPE=INTERNET:[homeemail]
+EMAIL;TYPE=WORK;TYPE=INTERNET:[workemail]
+PRODID:-//Apple Inc.//iCloud Web Address Book 2024B58//EN
+REV:2021-01-17T17:28:16Z
+END:VCARD
