@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func parseJSON(jsonString string) {
+func parseHouseHoldIndexJSON(jsonString string) {
 
 	type HouseHoldID struct {
 		Records   int

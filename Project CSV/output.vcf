@@ -1,10 +1,27 @@
 BEGIN:VCARD
 VERSION:3.0
+N:Lastname;Firstname;;;
+FN:Firstname Lastname
+ORG:MTC SFO;
+NICKNAME:Prefferedname
+BDAY;X-APPLE-OMIT-YEAR=2021;VALUE=date:DOB
+NOTE:Members of household csv
+item1.ADR;TYPE=HOME;TYPE=pref:;;address1\naddress2;city;state;United States
+item1.X-ABADR:us
+TEL;TYPE=CELL;TYPE=pref;TYPE=VOICE:zipcode
+TEL;TYPE=IPHONE;TYPE=CELL;TYPE=VOICE:cellphone
+TEL;TYPE=HOME;TYPE=VOICE:homephone
+EMAIL;TYPE=HOME;TYPE=pref;TYPE=INTERNET:personalemail
+EMAIL;TYPE=WORK;TYPE=INTERNET:workemail
+PRODID:-//Mar Thoma Church Of San Francisco.//Registry dated 20210101//EN
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
 N:Abraham;Biju;;;
 FN:Biju Abraham
 ORG:MTC SFO;
 NICKNAME:Chacha
-BDAY;X-APPLE-OMIT-YEAR=1604;VALUE=date:1604-11-09
+BDAY;X-APPLE-OMIT-YEAR=2021;VALUE=date:11/09
 NOTE:Suju Abraham, Rebecca Abraham, Rachel Abraham
 item1.ADR;TYPE=HOME;TYPE=pref:;;33929 Shylock Dr\ntest;Fremont;CA;United States
 item1.X-ABADR:us
@@ -21,7 +38,7 @@ N:Isaac;Sujit;;;
 FN:Sujit Isaac
 ORG:MTC SFO;
 NICKNAME:Uncle
-BDAY;X-APPLE-OMIT-YEAR=1604;VALUE=date:1604-05-13
+BDAY;X-APPLE-OMIT-YEAR=2021;VALUE=date:05/13
 NOTE:Anita Sujit, Sushmita Sujit, Sweta Sujit
 item1.ADR;TYPE=HOME;TYPE=pref:;;1010 Doe Court\nApt 12;Foster City;CA;United States
 item1.X-ABADR:us
