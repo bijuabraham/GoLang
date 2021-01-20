@@ -12,6 +12,7 @@ func parseHouseholdJSON(jsonString string) {
 		LastName  string
 		Address1  string
 		Title     string
+		MemberID  string
 	}
 
 	type TmpHouseHold struct {
@@ -77,6 +78,7 @@ func parseHouseholdJSON(jsonString string) {
 		LastName:  tmpH.HouseHolds[0].LastName,
 		Address1:  tmpH.HouseHolds[0].Address1,
 		Title:     tmpH.HouseHolds[0].Title,
+		MemberID:  tmpH.HouseHolds[0].Members[0].MemberID,
 	}
 
 	fmt.Printf("%+v\n", hh)
