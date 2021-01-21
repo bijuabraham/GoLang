@@ -2,5 +2,7 @@ package main
 
 func main() {
 	householdIndexiconRequest()
-	houseHoldIconRequest()
+	tmpbody := houseHoldIconRequest()
+	tmpH := parseHouseholdJSON(tmpbody)
+	tmpH.saveCSV("household.csv")
 }

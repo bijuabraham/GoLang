@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 func parseHouseHoldIndexJSON(jsonString string) {
@@ -43,13 +42,14 @@ func parseHouseHoldIndexJSON(jsonString string) {
 
 	//fmt.Printf("%+v\n", tmpH)
 	// {Location:London Weather:[{Weather:Drizzle Description:light intensity drizzle}] Temperature:{Temperature:280.32 MinTemperature:279.15 MaxTemperature:281.15}}
+	/*
+		fmt.Println(tmpH.Statistics.Records)
+		hhID := HouseHoldID{
+			Records:   tmpH.Statistics.Records,
+			ID:        tmpH.HouseHoldIndex[0].ID,
+			FirstName: tmpH.HouseHoldIndex[0].FirstName,
+		}
 
-	fmt.Println(tmpH.Statistics.Records)
-	hhID := HouseHoldID{
-		Records:   tmpH.Statistics.Records,
-		ID:        tmpH.HouseHoldIndex[0].ID,
-		FirstName: tmpH.HouseHoldIndex[0].FirstName,
-	}
-
-	fmt.Printf("%+v\n", hhID)
+		fmt.Printf("%+v\n", hhID)
+	*/
 }

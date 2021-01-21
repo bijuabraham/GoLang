@@ -39,9 +39,6 @@ func parseCsv(r *csv.Reader) {
 		io.WriteString(dat, "EMAIL;TYPE=WORK;TYPE=INTERNET:"+record[14]+"\n")
 		io.WriteString(dat, "PRODID:-//Mar Thoma Church Of San Francisco.//Registry dated 20210101//EN\n")
 		io.WriteString(dat, "END:VCARD\n")
-		if err != nil {
-			log.Fatal(err)
-		}
 
 		/*
 			fmt.Println("BEGIN:VCARD")

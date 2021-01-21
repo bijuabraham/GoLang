@@ -2,13 +2,82 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 )
 
-func houseHoldIconRequest() {
+type HouseHolds struct {
+	Title     string
+	FirstName string
+	LastName  string
+	Address1  string
+	Address2  string
+	City      string
+	State     string
+	Zip       string
+	Email     string
+	Phone     string
+	Phones    string
+	Emails    string
+	Picture   string
+	MemberID  string
+}
+
+type TmpHouseHold struct {
+	Statistics struct {
+		Records int `json:"records"`
+		Startat int `json:"startat"`
+		Limit   int `json:"limit"`
+	} `json:"statistics"`
+	HouseHolds []struct {
+		ID                 string `json:"id"`
+		DateChanged        string `json:"date_changed"`
+		Status             string `json:"status"`
+		StatusDate         string `json:"status_date"`
+		Title              string `json:"title"`
+		FirstName          string `json:"first_name"`
+		LastName           string `json:"last_name"`
+		MailTo             string `json:"mail_to"`
+		Address1           string `json:"address_1"`
+		Address2           string `json:"address_2"`
+		City               string `json:"city"`
+		State              string `json:"state"`
+		Zip                string `json:"zip"`
+		Country            string `json:"country"`
+		CarrierRoute       string `json:"carrier_route"`
+		Email              string `json:"email"`
+		EmailUnlisted      bool   `json:"email_unlisted"`
+		Permission         bool   `json:"permission"`
+		IncludeInDirectory bool   `json:"include_address_in_directory"`
+		Phone              string `json:"phone"`
+		PhoneUnlisted      bool   `json:"phone_unlisted"`
+		Phones             string `json:"phones"`
+		Emails             string `json:"emails"`
+		Members            []struct {
+			MemberID string `json:"id"`
+		} `json:"members"`
+		UserDefined1 string `json:"user_defined_1"`
+		UserDefined2 string `json:"user_defined_2"`
+		DDPatron     string `json:"dd_patron"`
+		Picture      string `json:"picture"`
+		Thumbnail    string `json:"thumbnail"`
+	} `json:"households"`
+	Permissions struct {
+		Create bool `json:"create"`
+		Read   bool `json:"read"`
+		Update bool `json:"update"`
+		Delete bool `json:"delete"`
+	} `json:"permissions"`
+	Session string `json:"session"`
+	Role    string `json:"role"`
+}
+
+func houseHoldIconRequest() string {
 	url := "https://secure1.iconcmo.com/api/"
 	fmt.Println("URL:>", url)
 
@@ -41,10 +110,49 @@ func houseHoldIconRequest() {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
-
-	fmt.Println("response Status:", resp.Status)
-	//fmt.Println("response Headers:", resp.Header)
 	body, _ := ioutil.ReadAll(resp.Body)
-	//fmt.Println("response Body:", string(body))
-	parseHouseholdJSON(string(body))
+	return string(body)
+}
+
+func parseHouseholdJSON(jsonString string) TmpHouseHold {
+
+	var tmpH TmpHouseHold
+	err := json.Unmarshal([]byte(jsonString), &tmpH)
+	if err != nil {
+		panic(err)
+	}
+
+	//fmt.Printf("%+v\n", tmpH)
+	// {Location:London Weather:[{Weather:Drizzle Description:light intensity drizzle}] Temperature:{Temperature:280.32 MinTemperature:279.15 MaxTemperature:281.15}}
+	/*
+		hh := HouseHolds{
+			Title:     tmpH.HouseHolds[0].Title,
+			FirstName: tmpH.HouseHolds[0].FirstName,
+			LastName:  tmpH.HouseHolds[0].LastName,
+			Address1:  tmpH.HouseHolds[0].Address1,
+			Address2:  tmpH.HouseHolds[0].Address2,
+			City:      tmpH.HouseHolds[0].City,
+			State:     tmpH.HouseHolds[0].State,
+			Zip:       tmpH.HouseHolds[0].Zip,
+			Email:     tmpH.HouseHolds[0].Email,
+			Phone:     tmpH.HouseHolds[0].Phone,
+			Picture:   tmpH.HouseHolds[0].Picture,
+		}
+		fmt.Printf("%+v\n", hh)
+	*/
+	return tmpH
+}
+
+func (tmpH TmpHouseHold) saveCSV(f string) {
+	hfile := "households.csv"
+	dat, err := os.Create(hfile)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for i := range tmpH.HouseHolds {
+		s := `"` + tmpH.HouseHolds[i].Title + `","` + tmpH.HouseHolds[i].FirstName + `","` + tmpH.HouseHolds[i].LastName + `","` + tmpH.HouseHolds[i].Address1 + `","` + tmpH.HouseHolds[i].Address2 + `","` + tmpH.HouseHolds[i].City + `","` + tmpH.HouseHolds[i].State + `","` + tmpH.HouseHolds[i].Zip + `","` + tmpH.HouseHolds[i].Email + `","` + tmpH.HouseHolds[i].Phone + `","` + tmpH.HouseHolds[i].Picture + `"`
+		io.WriteString(dat, s)
+		io.WriteString(dat, "\n")
+		//fmt.Printf("String written %v", s)
+	}
 }
