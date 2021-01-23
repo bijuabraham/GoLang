@@ -34,5 +34,5 @@ func (r triangle) area() float64 {
 
 func printArea(a Areas) {
 	fmt.Println(a)
-	fmt.Printf("area     : %f \n", a.area())
+	fmt.Printf("area     : %v \n", a.area())
 }
