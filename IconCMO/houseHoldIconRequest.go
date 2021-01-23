@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -143,9 +144,9 @@ func parseHouseholdJSON(jsonString string) TmpHouseHold {
 	return tmpH
 }
 
-func (tmpH TmpHouseHold) saveCSV(f string) {
-	hfile := "households.csv"
-	dat, err := os.Create(hfile)
+func (tmpH TmpHouseHold) convertCSV2VCF(f string) {
+	csvfile := f + ".csv"
+	dat, err := os.Create(csvfile)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -155,4 +156,43 @@ func (tmpH TmpHouseHold) saveCSV(f string) {
 		io.WriteString(dat, "\n")
 		//fmt.Printf("String written %v", s)
 	}
+	//dat.Sync()
+	vcffile := f + ".vcf"
+	dat, err = os.Open(csvfile)
+	if err != nil {
+		log.Fatal(err)
+	}
+	csvHandle := csv.NewReader(dat)
+	vdat, verr := os.Create(vcffile)
+	if verr != nil {
+		log.Fatal(verr)
+	}
+	for {
+		record, rerr := csvHandle.Read()
+		if rerr == io.EOF {
+			fmt.Println("Broken")
+			break
+		}
+		if rerr != nil {
+			log.Fatal(rerr)
+		}
+
+		io.WriteString(vdat, "BEGIN:VCARD\n")
+		io.WriteString(vdat, "VERSION:3.0\n")
+		io.WriteString(vdat, "N:"+record[2]+";"+record[1]+";;;\n")
+		io.WriteString(vdat, "FN:"+record[1]+" "+record[2]+"\n")
+		io.WriteString(vdat, "ORG:MTC SFO;\n")
+		io.WriteString(vdat, "BDAY;X-APPLE-OMIT-YEAR=2021;VALUE=date:"+record[3]+"\n")
+		io.WriteString(vdat, "NOTE:"+record[4]+"\n")
+		io.WriteString(vdat, "item1.ADR;TYPE=HOME;TYPE=pref:;;"+record[6]+"\\n"+record[7]+";"+record[8]+";"+record[9]+";United States\n")
+		io.WriteString(vdat, "item1.X-ABADR:us\n")
+		io.WriteString(vdat, "TEL;TYPE=CELL;TYPE=pref;TYPE=VOICE:"+record[10]+"\n")
+		io.WriteString(vdat, "TEL;TYPE=IPHONE;TYPE=CELL;TYPE=VOICE:"+record[11]+"\n")
+		io.WriteString(vdat, "TEL;TYPE=HOME;TYPE=VOICE:"+record[12]+"\n")
+		io.WriteString(vdat, "EMAIL;TYPE=HOME;TYPE=pref;TYPE=INTERNET:"+record[13]+"\n")
+		io.WriteString(vdat, "EMAIL;TYPE=WORK;TYPE=INTERNET:"+record[14]+"\n")
+		io.WriteString(vdat, "PRODID:-//Mar Thoma Church Of San Francisco.//Registry dated 20210101//EN\n")
+		io.WriteString(vdat, "END:VCARD\n")
+	}
+	//vdat.Sync()
 }
